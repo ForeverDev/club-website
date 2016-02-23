@@ -1,6 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var url = require("url");
+var vm = require("vm");
 var port = 8080;
 
 function handleServer(request, response) {
@@ -8,7 +9,9 @@ function handleServer(request, response) {
 	// we should probably have a branching system for
 	// these post requests
 	if (request.method == "POST") {
-
+		if (fs.existsSync("./POSTS/" + request.url)) {
+			require("./POSTS/" + request.url).enter(request, response);
+		}
 	} else {
 		var parts = url.parse(request.url);
 		var pathname = parts.pathname

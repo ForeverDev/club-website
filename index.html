@@ -17,7 +17,13 @@
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
 <script>
-	
+
+	var link = $("<a />");
+	link.attr("href", "/david/home.html");
+	link.text("testing link");
+	$("#mainblock").append(link);
+
+	$.post("test.js");
 
 </script>
 
