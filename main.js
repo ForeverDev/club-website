@@ -9,7 +9,6 @@ function handleServer(request, response) {
 	// TODO handle various POST requests
 	// we should probably have a branching system for
 	// these post requests
-	console.log(request.method, request.url);
 	if (request.method == "POST") {
 		var body = "";
 		request.on("data", function(data) {

@@ -18,15 +18,15 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
 <script>
 
-	var link = $("<a />");
-	link.attr("href", "/david/home.html");
-	link.text("testing link");
-	$("#mainblock").append(link);
-	
 	$.post("incrementInformation.js", {
 		totalTraffic: 1
 	});
-g
+
+	$("#mainblock").append("<a href='/david/home.html'>David's Homepage</a><br>");
+	$("#mainblock").append("<a href='/eric/home.html'>Eric's Homepage</a><br>");
+	$("#mainblock").append("<a href='/nathan/home.html'>Nathan's Homepage</a><br>");
+	$("#mainblock").append("<a href='/zack/home.html'>Zack's Homepage</a><br>");
+
 </script>
 
 </html>
