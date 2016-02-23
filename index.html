@@ -22,9 +22,11 @@
 	link.attr("href", "/david/home.html");
 	link.text("testing link");
 	$("#mainblock").append(link);
-
-	$.post("test.js");
-
+	
+	$.post("incrementInformation.js", {
+		totalTraffic: 1
+	});
+g
 </script>
 
 </html>

@@ -2,16 +2,25 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url");
 var vm = require("vm");
+var qs = require("querystring");
 var port = 8080;
 
 function handleServer(request, response) {
 	// TODO handle various POST requests
 	// we should probably have a branching system for
 	// these post requests
+	console.log(request.method, request.url);
 	if (request.method == "POST") {
-		if (fs.existsSync("./POSTS/" + request.url)) {
-			require("./POSTS/" + request.url).enter(request, response);
-		}
+		var body = "";
+		request.on("data", function(data) {
+			body += data;
+		});
+		request.on("end", function() {
+			var data = qs.parse(body);
+			if (fs.existsSync("./POSTS/" + request.url)) {
+				require("./POSTS/" + request.url).enter(data);
+			}
+		});
 	} else {
 		var parts = url.parse(request.url);
 		var pathname = parts.pathname
