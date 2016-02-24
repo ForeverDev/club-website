@@ -32,16 +32,6 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
 <script>
 
-	$.get("info.json", function(data) {
-		console.log(data);
-		var info = JSON.parse(data);
-		console.log(info);
-		$("#totalTrafficText").text("Total traffic: " + info.totalTraffic);
-	});
-
-	$.post("incrementInformation.js", {
-		totalTraffic: 1
-	});
 
 </script>
 
