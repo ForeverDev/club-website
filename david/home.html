@@ -4,10 +4,9 @@
 	
 	<div id="main">
 		<h1>David's Subdirectory</h1>
-		<p>TODO implement a Spyre interpreter here ;)</p>
-		<textarea id="spyreCode" rows="20" cols="60">Enter some Spyre assembly code here</textarea>
-		<br>
-		<button id="submitSpyreCode" type="button">Execute code</button>
+		<div id="links">
+			<a href="game.html">Mandelbrot Generator</a>
+		</div>
 	</div>
 
 </body>
@@ -16,19 +15,24 @@
 	#main {
 		border-style: solid;
 		text-align: center;
+		margin: auto;
 		width: 100%;
 		height: 100%;
-	};
+	}
+	#links {
+		border-style: solid;
+		padding-top: 20px;
+		border-width: 2px solid #000000;
+		text-align: center;
+		margin: auto;
+		width: 300px;
+		height: 500px;
+	}
 </style>
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
 <script>
 	
-	$("#submitSpyreCode").click(function() {
-		$.post("spyreExecute.js", {
-			source: $("#spyreCode").val()
-		});
-	});
 
 </script>
 
