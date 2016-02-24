@@ -16,6 +16,7 @@ function handleServer(request, response) {
 		});
 		request.on("end", function() {
 			var data = qs.parse(body);
+			request.url = request.url.substring(request.url.lastIndexOf("/"));
 			if (fs.existsSync("./POSTS/" + request.url)) {
 				require("./POSTS/" + request.url).enter(data);
 			}
@@ -24,7 +25,7 @@ function handleServer(request, response) {
 		var parts = url.parse(request.url);
 		var pathname = parts.pathname
 		response.writeHead(200, {"Content-Type": "text/html"});
-		response.write("<style> body { background-color: lightblue; }; </style>");
+		response.write("<style> body { background-color: lightblue; } </style> ");
 		if (pathname == "/") {
 			response.end(fs.readFileSync("index.html"));	
 		} else if (fs.existsSync("./" + pathname)) {

@@ -5,6 +5,9 @@
 	<div id="main">
 		<h1>David's Subdirectory</h1>
 		<p>TODO implement a Spyre interpreter here ;)</p>
+		<textarea id="spyreCode" rows="20" cols="60">Enter some Spyre assembly code here</textarea>
+		<br>
+		<button id="submitSpyreCode" type="button">Execute code</button>
 	</div>
 
 </body>
@@ -17,5 +20,16 @@
 		height: 100%;
 	};
 </style>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
+<script>
+	
+	$("#submitSpyreCode").click(function() {
+		$.post("spyreExecute.js", {
+			source: $("#spyreCode").val()
+		});
+	});
+
+</script>
 
 </html>
