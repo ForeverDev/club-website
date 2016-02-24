@@ -25,10 +25,13 @@ function handleServer(request, response) {
 		var parts = url.parse(request.url);
 		var pathname = parts.pathname
 		response.writeHead(200, {"Content-Type": "text/html"});
-		response.write("<style> body { background-color: lightblue; } </style> ");
 		if (pathname == "/") {
+			response.write("<style> body { background-color: lightblue; } </style> ");
 			response.end(fs.readFileSync("index.html"));	
 		} else if (fs.existsSync("./" + pathname)) {
+			if (pathname.substring(pathname.length - 4) == "html") {
+				response.end(fs.readFileSync("index.html"));	
+			}
 			response.end(fs.readFileSync("./" + pathname));
 		} else {
 			response.end("error: no such url '" + pathname + "'");
