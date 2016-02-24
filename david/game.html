@@ -1,0 +1,89 @@
+<html>
+<head> </head>
+<body>
+	
+	<div id="main">
+		<h1>Canvas Testing</h1>
+		<canvas id="gameScreen" width="500" height="500"> </canvas>
+		<br>
+		<button id="generateMandelbrot" type="button">Generate Mandelbrot</button>
+	</div>
+
+</body>
+
+<style>
+	#main {
+		border-style: solid;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+	}
+	#gameScreen {
+		border: 1px solid #000000;
+	}
+</style>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
+<script>
+	
+	var game = {
+		screen:			$("#gameScreen")[0].getContext("2d"),
+		width:			$("#gameScreen").attr("width"),
+		height:			$("#gameScreen").attr("height"),
+		centerX:		0,
+		centerY:		0,
+		radius:			3,
+		colorscheme:	[
+			[66, 30, 15],		[25, 7, 26],
+			[9, 1, 47],			[4, 4, 73],
+			[0, 7, 100],		[12, 44, 138],
+			[24, 82, 177],		[57, 125, 209],
+			[134, 181, 229],	[211, 236, 248],
+			[241, 233, 191],	[248, 201, 95],
+			[255, 170, 0],		[204, 128, 0],
+			[153, 87, 0],		[106, 53, 3]
+		]
+	};
+
+	function map(x, a, b, c, d) {
+		return (x - a)/(b - a) * (d - c) + c
+	}
+
+	function generateMandelbrot() {
+		for (var i = 0; i < game.width; i++) {
+			for (var j = 0; j < game.height; j++) {
+				var iter = 0;
+				var zx = 0;
+				var zy = 0;		
+				var cx = map(i, 0, game.width, game.centerX - game.radius/2, game.centerX + game.radius/2);
+				var cy = map(j, 0, game.height, game.centerY - game.radius/2, game.centerY + game.radius/2);
+				var is_set = true;
+				while (iter < 200) {
+					var tmp = 2*zx*zy + cy;
+					zx = zx*zx - zy*zy + cx;
+					zy = tmp;
+					iter++;
+					if (zx*zx + zy*zy > 4) {
+						is_set = false;
+						break;
+					}
+				}
+				if (is_set) {
+					game.screen.fillStyle = "#000000";
+				} else {
+					var color = game.colorscheme[game.colorscheme.length % iter];
+					if (color) {
+						game.screen.fillStyle = "rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ", 255)";
+					}
+				}
+				game.screen.fillRect(i, j, 1, 1);
+			}
+		}
+	}
+
+	$("#generateMandelbrot").click(generateMandelbrot);
+	
+
+</script>
+
+</html>
