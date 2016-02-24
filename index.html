@@ -3,6 +3,11 @@
 <body>
 	<div id="mainblock">
 		<h1>Programmers United</h1>
+		<a href="david/home.html">David's Homepage</a><br>
+		<a href="eric/home.html">Eric's Homepage</a><br>
+		<a href="nathan/home.html">Nathan's Homepage</a><br>
+		<a href="zack/home.html">Zack's Homepage</a><br>
+		<p id="totalTrafficText"></p>
 	</div>
 </body>
 
@@ -18,14 +23,14 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
 <script>
 
+	$.get("info.json", function(data) {
+		var info = JSON.parse(data);
+		$("#totalTrafficText").text("Total traffic: " + info.totalTraffic);
+	});
+
 	$.post("incrementInformation.js", {
 		totalTraffic: 1
 	});
-
-	$("#mainblock").append("<a href='/david/home.html'>David's Homepage</a><br>");
-	$("#mainblock").append("<a href='/eric/home.html'>Eric's Homepage</a><br>");
-	$("#mainblock").append("<a href='/nathan/home.html'>Nathan's Homepage</a><br>");
-	$("#mainblock").append("<a href='/zack/home.html'>Zack's Homepage</a><br>");
 
 </script>
 
