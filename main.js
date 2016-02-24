@@ -27,11 +27,7 @@ function handleServer(request, response) {
 		if (pathname == "/") {
 			response.end(fs.readFileSync("index.html"));	
 		} else if (fs.existsSync("./" + pathname)) {
-			if (pathname.substring(pathname.length - 4) == "json") {
-				response.end(fs.readFileSync("./" + pathname));
-			} else {
-				response.end(fs.readFileSync("./" + pathname));
-			}
+			response.end(fs.readFileSync("./" + pathname));
 		} else {
 			response.end("error: no such url '" + pathname + "'");
 		}
