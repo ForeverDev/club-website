@@ -30,7 +30,7 @@ function handleServer(request, response) {
 			response.end(fs.readFileSync("index.html"));	
 		} else if (fs.existsSync("./" + pathname)) {
 			if (pathname.substring(pathname.length - 4) == "html") {
-				response.end(fs.readFileSync("index.html"));	
+				response.write("<style> body { background-color: lightblue; } </style> ");
 			}
 			response.end(fs.readFileSync("./" + pathname));
 		} else {
